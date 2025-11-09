@@ -71,7 +71,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onSuccess, onBa
 
               <button 
             type="submit" 
-            className="btn text-white w-full" 
+            className="btn main-button text-white w-full" 
             disabled={formik.isSubmitting}
           >
                 {formik.isSubmitting ? 'Đang gửi...' : 'Gửi yêu cầu'}
@@ -80,7 +80,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ onSuccess, onBa
           )}
           
           <div className="text-center mt-4">
-            <button type="button" onClick={onBackToLogin}>
+            <button type="button" className="hover:text-[#21e40fef] cursor-pointer" onClick={onBackToLogin}>
               Quay lại đăng nhập
             </button>
           </div>

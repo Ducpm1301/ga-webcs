@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './components/auth/AuthProvider';
 import './App.css';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import { routes } from './routes';
+import RouteWrapper from './components/RouteWrapper';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/" element={<Navigate to="/login" />} />
+          {routes.map((route) => (
+            <Route 
+              key={route.path} 
+              path={route.path} 
+              element={<RouteWrapper element={route.element} path={route.path} />} 
+            />
+          ))}
         </Routes>
       </AuthProvider>
     </BrowserRouter>

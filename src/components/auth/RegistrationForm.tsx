@@ -133,14 +133,14 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSuccess, onBackTo
 
           <button 
             type="submit" 
-            className="btn bg-blue-600 hover:bg-blue-700 text-white w-full" 
+            className="btn main-button w-full" 
             disabled={formik.isSubmitting}
           >
             {formik.isSubmitting ? 'Đang đăng ký...' : 'Đăng ký'}
           </button>
           
           <div className="text-center mt-4">
-            <button type="button" onClick={onBackToLogin} className="text-primary">
+            <button type="button"  onClick={onBackToLogin}  className="hover:text-[#21e40fef] cursor-pointer">
               Đã có tài khoản? Đăng nhập
             </button>
           </div>
