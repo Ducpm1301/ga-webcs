@@ -54,15 +54,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(userData);
         console.log("AuthProvider: User logged in and state updated.", userData);
 
-        // Redirection logic might still live in SignInPage or be triggered here
-        // Example: navigate based on profile completion status if available
-        // const isProfileCompleted = localStorage.getItem('isProfileCompleted');
-        // if (isProfileCompleted === 'true') {
-        //     navigate('/dashboard');
-        // } else {
-        //     navigate('/profile-completion');
-        // }
-
     }, []); // Removed navigate from dependencies, login action itself doesn't navigate
 
     // Logout function updated to clear user state

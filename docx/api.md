@@ -1,0 +1,438 @@
+# 1.1 Login API
+## Request
+- Method: POST
+- Endpoint: /login
+- Header: 
+    - Content-Type: application/json
+    - apikey: string
+- Request Body:
+    "application.code": string,
+    "user.email": string,
+    "user.password": string,
+    "device": string"
+## Response
+- Status Code: 200 OK
+- Response Body:
+    - code: string
+    - partners: array of objects
+        - code: string
+    - access_token: string
+
+# 1.2 API get summary data from PXTK
+## Request
+- Method: GET
+- Endpoint: /summary
+- Header: 
+    - Content-Type: application/json
+    - apikey: string
+    - token: auth_token (from localStorage)
+    - Authorization: Bearer {access_token}
+- Request Body:
+    - day: string (format: YYYY-MM-DD)
+## Response
+- Status Code: 200 OK
+- Response Body (Mocking):
+    {
+    "status": "selected",
+    "table": "ems_dev.gtcb.pxtk_tongketca",
+    "count": 1,
+    "next": false,
+    "data": [
+        {
+            "pxtk_tongketca_id": 8,
+            "thongtincoban_ngay": "2025-09-01",
+            "thongtincoban_truongca": "Hải ca1",
+            "thoigiansanxuat_ca": 1,
+            "thongtincoban_thoigiansanxuat_gio": 7.5,
+            "thongtincoban_thoigiansanxuat_sonhanvien": 15,
+            "thongtincoban_nhanxetchungcuaquandocpx": "API-DEV",
+            "thongtincoban_nhanxetcuabangiamdoc": null,
+            "sanluongca_qtksanxuatlythuyet": null,
+            "sanluongca_qtksanxuatthucte": null,
+            "sanluongca_qtksanglocao": null,
+            "sanluongca_qtksudungtukho": null,
+            "sanluongca_qtkrangoaikho": null,
+            "sanluongca_khoiluongphanlan1": null,
+            "sanluongca_khoiluongphanlan2": null,
+            "sanluongca_tongkhoiluongphan": null,
+            "sanluongca_tilephantylephanlan1": null,
+            "sanluongca_tilephantylephanlan2": null,
+            "sanluongca_tilephantongtylephan": null,
+            "sanluongca_bui": null,
+            "sanluongca_thucthu": null,
+            "nguyenlieuđauvao_tongquang0_8mm": null,
+            "nguyenlieuđauvao_tongtinhquang": null,
+            "nguyenlieuđauvao_quang0_8mmquanglimonit0_8mm": null,
+            "nguyenlieuđauvao_quangmanhetit0_8mm_tusanxuat": null,
+            "nguyenlieuđauvao_quangmanhetit0_8mm_muangoai": null,
+            "nguyenlieuđauvao_tinhquangtinhquang_tusanxuat": null,
+            "nguyenlieuđauvao_tinhquang_muangoai": null,
+            "nguyenlieuđauvao_tinhquangsq": null,
+            "nguyenlieuđauvao_quangphannguoi": null,
+            "nguyenlieuđauvao_vaycan": null,
+            "nguyenlieuđauvao_nhienlieuthancam3a": null,
+            "nguyenlieuđauvao_thancoc": null,
+            "nguyenlieuđauvao_than3b": null,
+            "nguyenlieuđauvao_trodungvoinung": null,
+            "nguyenlieuđauvao_đavoi0_3mm": null,
+            "nguyenlieuđauvao_đolomit0_3mm": null,
+            "nguyenlieuđauvao_bunbui_bunventury": null,
+            "nguyenlieuđauvao_bunbui_bui": null,
+            "nguyenlieuđauvao_khac_khac": null,
+            "nguyenlieuđauvao_khac_tenvatlieu": null,
+            "nguyenlieuđauvao_tongnguyennhienlieuvaotk": null,
+            "tieuhaonangluong_đien": null,
+            "tieuhaonangluong_nuoc": null,
+            "tieuhaonguyennhienlieu_quangtinh": null,
+            "tieuhaonguyennhienlieu_quangcam0_8mm": null,
+            "tieuhaonguyennhienlieu_quangphannguoi": null,
+            "tieuhaonguyennhienlieu_than": null,
+            "tieuhaonguyennhienlieu_davoi0_3mm": null,
+            "tieuhaonguyennhienlieu_dolomit0_3mm": null,
+            "tieuhaonguyennhienlieu_voinung0_5mm": null,
+            "tieuhaonguyennhienlieu_khac": null,
+            "tieuhaonguyennhienlieu_khac_tenvatlieu": null,
+            "user_id": "gtcb.dir@gmail.com",
+            "created_at": "2025-11-06T11:18:56.646890Z",
+            "updated_at": null,
+            "sanluongca_qtksanxuatlythuyet_start": "2000-01-01T00:00:00Z",
+            "sanluongca_qtksanxuatlythuyet_end": "2000-01-01T00:00:00Z"
+        }
+    ]
+}
+
+# 1.3 API get detail data from PXLG
+## Request
+- Method: GET
+- Endpoint: /detail
+- Header: 
+    - Content-Type: application/json
+    - apikey: string
+    - token: auth_token (from localStorage)
+    - Authorization: Bearer {access_token}
+- Request Body:
+    - day: string (format: YYYY-MM-DD)
+## Response
+- Status Code: 200 OK
+- Response Body (Mocking):
+    {
+    "status": "selected",
+    "table": "ems_dev.gtcb.pxlg_tongketca",
+    "count": 2,
+    "next": false,
+    "data": [
+        {
+            "pxlg_tongketca_id": 1,
+            "thongtincoban_ngay": "2000-01-01",
+            "thongtincoban_truongca": "NONAME update",
+            "thoigiansanxuat_ca": 1,
+            "thongtincoban_thoigiansanxuat_gio": 5000.0,
+            "thongtincoban_thoigiansanxuat_sonhanvien": 5000,
+            "thongtincoban_nhanxetchungcuaquandocpx": "OK",
+            "thongtincoban_nhanxetcuabangiamdoc": "OK2",
+            "tonghop_sx_tong_so_me_lieu_sx_trong_ca": 5000,
+            "tonghop_sx_luy_ke_so_me_lieu_dau_ca": 5000,
+            "tonghop_sx_luy_ke_so_me_lieu_cuoi_ca": 5000,
+            "tonghop_sx_tong_so_me_gang_sx_trong_ca": null,
+            "tonghop_sx_luy_ke_so_me_gang_dau_ca": null,
+            "tonghop_sx_luy_ke_so_me_gang_cuoi_ca": null,
+            "dauvao_nguyenlieu_tho_quang_thieu_ket_t": null,
+            "dauvao_nguyenlieu_tho_quang_ve_vien_t": null,
+            "dauvao_nguyenlieu_tho_quang_8_38mm_na_rua_t": null,
+            "dauvao_nguyenlieu_tho_quang_8_38mm_mnt": null,
+            "dauvao_nguyenlieu_tho_quang_limonit_t": null,
+            "dauvao_nguyenlieu_tho_gang_me_t": null,
+            "dauvao_nguyenlieu_tho_nguyen_lieu_nhien_lieu": null,
+            "dauvao_nguyenlieu_tho_than_coc_25_80mm_t": null,
+            "dauvao_nguyenlieu_tho_than_coc_trung_gian_25_40mm_t": null,
+            "dauvao_nguyenlieu_tho_than_antraxit_3a_t": null,
+            "dauvao_nguyenlieu_tho_nguyen_lieu_phu_tro": null,
+            "dauvao_nguyenlieu_tho_dolomit_10_40mm_t": null,
+            "dauvao_nguyenlieu_tho_da_voi_10_40mm_t": null,
+            "dauvao_nguyenlieu_tho_huynh_thach_t": null,
+            "dauvao_nguyenlieu_tho_tong_khoi_luong_dau_vao_t": null,
+            "dauvao_nguyenlieu_tho_ty_le_thieu_ket": null,
+            "sl_ban_thanhpham_tong_hop_san_luong_dau_ra": null,
+            "sl_ban_thanhpham_tong_san_luong_gang_long_t": null,
+            "sl_ban_thanhpham_gang_long_sang_thep_t": null,
+            "sl_ban_thanhpham_san_xuat_gang_duc_t": null,
+            "sl_ban_thanhpham_ty_le_sat_pt": null,
+            "sl_ban_thanhpham_ban_thanh_pham": null,
+            "sl_ban_thanhpham_bui_tan": null,
+            "sl_ban_thanhpham_me_gang_tan": null,
+            "sl_ban_thanhpham_xi_hat_tan": null,
+            "sl_ban_thanhpham_xi_kho_tan": null,
+            "sl_ban_thanhpham_sio2_pt": null,
+            "sl_ban_thanhpham_cao_pt": null,
+            "sl_ban_thanhpham_al2o3_pt": null,
+            "sl_ban_thanhpham_mgo_pt": null,
+            "sl_ban_thanhpham_mno_pt": null,
+            "sl_ban_thanhpham_feo_pt": null,
+            "sl_ban_thanhpham_s_pt": null,
+            "sl_ban_thanhpham_ty_le_r2": null,
+            "sl_ban_thanhpham_ty_le_r3": null,
+            "tieuhaonangluong_dien": null,
+            "tieuhaonangluong_nuoc": null,
+            "tieuthu_nangluongchi_tieu_tieu_hao": null,
+            "tieuthu_nangluongtieu_hao_than_coc_kg_t": null,
+            "tieuthu_nangluongtieu_hao_than_3a1_t_t": null,
+            "tieuthu_nangluongpv_theo_ca_m3_t": null,
+            "tieuthu_nangluongchi_tieu_qk": null,
+            "tieuthu_nangluongchi_tieu_qg": null,
+            "tieuthu_nangluongtieu_hao_nuoc_m3_t": null,
+            "tieuthu_nangluongtieu_hao_dien_kwh_t": null,
+            "nguyennhienlieu_kho_ham_luong_do_am": null,
+            "nguyennhienlieu_kho_do_am_quang_narua_pt": null,
+            "nguyennhienlieu_kho_do_am_quang_mn_pt": null,
+            "nguyennhienlieu_kho_do_am_quang_limonit_pt": null,
+            "nguyennhienlieu_kho_do_am_than_coc_pt": null,
+            "nguyennhienlieu_kho_do_am_than_coc_trung_gian_pt": null,
+            "nguyennhienlieu_kho_nguyen_lieu_tho_kho": null,
+            "nguyennhienlieu_kho_tong_than_coc_kho_t": null,
+            "nguyennhienlieu_kho_than_coc_kho_25_80mm_t": null,
+            "nguyennhienlieu_kho_than_coc_kho_trung_gian_t": null,
+            "nguyennhienlieu_kho_tong_quang_kho_8_38mm_t": null,
+            "nguyennhienlieu_kho_quang_kho_narua_t": null,
+            "nguyennhienlieu_kho_quang_kho_mn_t": null,
+            "nguyennhienlieu_kho_quang_kho_limonit_t": null,
+            "user_id": "NONAME",
+            "created_at": "2025-11-05T16:08:02.940335Z",
+            "updated_at": "2025-11-08T21:49:36.310263Z"
+        },
+        {
+            "pxlg_tongketca_id": 2,
+            "thongtincoban_ngay": "2000-01-01",
+            "thongtincoban_truongca": "NONAME Postman post",
+            "thoigiansanxuat_ca": 2,
+            "thongtincoban_thoigiansanxuat_gio": 8.0,
+            "thongtincoban_thoigiansanxuat_sonhanvien": 15,
+            "thongtincoban_nhanxetchungcuaquandocpx": "QD",
+            "thongtincoban_nhanxetcuabangiamdoc": "GD",
+            "tonghop_sx_tong_so_me_lieu_sx_trong_ca": 100,
+            "tonghop_sx_luy_ke_so_me_lieu_dau_ca": 100,
+            "tonghop_sx_luy_ke_so_me_lieu_cuoi_ca": 100,
+            "tonghop_sx_tong_so_me_gang_sx_trong_ca": 100,
+            "tonghop_sx_luy_ke_so_me_gang_dau_ca": 100,
+            "tonghop_sx_luy_ke_so_me_gang_cuoi_ca": 100,
+            "dauvao_nguyenlieu_tho_quang_thieu_ket_t": 100.0,
+            "dauvao_nguyenlieu_tho_quang_ve_vien_t": 100.0,
+            "dauvao_nguyenlieu_tho_quang_8_38mm_na_rua_t": 100.0,
+            "dauvao_nguyenlieu_tho_quang_8_38mm_mnt": 100.0,
+            "dauvao_nguyenlieu_tho_quang_limonit_t": 100.0,
+            "dauvao_nguyenlieu_tho_gang_me_t": 100.0,
+            "dauvao_nguyenlieu_tho_nguyen_lieu_nhien_lieu": 100.0,
+            "dauvao_nguyenlieu_tho_than_coc_25_80mm_t": 100.0,
+            "dauvao_nguyenlieu_tho_than_coc_trung_gian_25_40mm_t": 100.0,
+            "dauvao_nguyenlieu_tho_than_antraxit_3a_t": 100.0,
+            "dauvao_nguyenlieu_tho_nguyen_lieu_phu_tro": 100.0,
+            "dauvao_nguyenlieu_tho_dolomit_10_40mm_t": 100.0,
+            "dauvao_nguyenlieu_tho_da_voi_10_40mm_t": 100.0,
+            "dauvao_nguyenlieu_tho_huynh_thach_t": 100.0,
+            "dauvao_nguyenlieu_tho_tong_khoi_luong_dau_vao_t": 100.0,
+            "dauvao_nguyenlieu_tho_ty_le_thieu_ket": 100.0,
+            "sl_ban_thanhpham_tong_hop_san_luong_dau_ra": 100.0,
+            "sl_ban_thanhpham_tong_san_luong_gang_long_t": 100.0,
+            "sl_ban_thanhpham_gang_long_sang_thep_t": 100.0,
+            "sl_ban_thanhpham_san_xuat_gang_duc_t": 100.0,
+            "sl_ban_thanhpham_ty_le_sat_pt": 100.0,
+            "sl_ban_thanhpham_ban_thanh_pham": 100.0,
+            "sl_ban_thanhpham_bui_tan": 100.0,
+            "sl_ban_thanhpham_me_gang_tan": 100.0,
+            "sl_ban_thanhpham_xi_hat_tan": 100.0,
+            "sl_ban_thanhpham_xi_kho_tan": 100.0,
+            "sl_ban_thanhpham_sio2_pt": 100.0,
+            "sl_ban_thanhpham_cao_pt": 100.0,
+            "sl_ban_thanhpham_al2o3_pt": 100.0,
+            "sl_ban_thanhpham_mgo_pt": 100.0,
+            "sl_ban_thanhpham_mno_pt": 100.0,
+            "sl_ban_thanhpham_feo_pt": 100.0,
+            "sl_ban_thanhpham_s_pt": 100.0,
+            "sl_ban_thanhpham_ty_le_r2": 100.0,
+            "sl_ban_thanhpham_ty_le_r3": 100.0,
+            "tieuhaonangluong_dien": 100.0,
+            "tieuhaonangluong_nuoc": 100.0,
+            "tieuthu_nangluongchi_tieu_tieu_hao": 100.0,
+            "tieuthu_nangluongtieu_hao_than_coc_kg_t": 100.0,
+            "tieuthu_nangluongtieu_hao_than_3a1_t_t": 100.0,
+            "tieuthu_nangluongpv_theo_ca_m3_t": 100.0,
+            "tieuthu_nangluongchi_tieu_qk": 100.0,
+            "tieuthu_nangluongchi_tieu_qg": 100.0,
+            "tieuthu_nangluongtieu_hao_nuoc_m3_t": 100.0,
+            "tieuthu_nangluongtieu_hao_dien_kwh_t": 100.0,
+            "nguyennhienlieu_kho_ham_luong_do_am": 100.0,
+            "nguyennhienlieu_kho_do_am_quang_narua_pt": 100.0,
+            "nguyennhienlieu_kho_do_am_quang_mn_pt": 100.0,
+            "nguyennhienlieu_kho_do_am_quang_limonit_pt": 100.0,
+            "nguyennhienlieu_kho_do_am_than_coc_pt": 100.0,
+            "nguyennhienlieu_kho_do_am_than_coc_trung_gian_pt": 100.0,
+            "nguyennhienlieu_kho_nguyen_lieu_tho_kho": 100.0,
+            "nguyennhienlieu_kho_tong_than_coc_kho_t": 100.0,
+            "nguyennhienlieu_kho_than_coc_kho_25_80mm_t": 100.0,
+            "nguyennhienlieu_kho_than_coc_kho_trung_gian_t": 100.0,
+            "nguyennhienlieu_kho_tong_quang_kho_8_38mm_t": 100.0,
+            "nguyennhienlieu_kho_quang_kho_narua_t": 100.0,
+            "nguyennhienlieu_kho_quang_kho_mn_t": 100.0,
+            "nguyennhienlieu_kho_quang_kho_limonit_t": 100.0,
+            "user_id": "NONAME Postman post",
+            "created_at": "2025-11-05T16:08:03.274864Z",
+            "updated_at": null
+        }
+    ]
+}
+
+# 1.4 API get summary data from PXLT
+## Request
+- Method: GET
+- Endpoint: API_
+- Header:
+    - Content-Type: application/json
+    - apikey: string
+    - token: auth_token (from localStorage)
+    - Authorization: Bearer {access_token}
+- Request Body:
+    - day: string (format: YYYY-MM-DD)
+## Response
+- Status Code: 200 OK
+- Response Body (Mocking):
+    {
+    "status": "selected",
+    "table": "ems_dev.gtcb.pxlt_tongketca",
+    "count": 2,
+    "next": false,
+    "data": [
+        {
+            "pxlt_tongketca_id": 2,
+            "thongtincoban_ngay": "2000-01-01",
+            "thoigiansanxuat_ca": 1,
+            "thongtincoban_thoigiansanxuat_gio": 200.0,
+            "thongtincoban_thoigiansanxuat_sonhanvien": 200,
+            "thongtincoban_truongca": "NONAME",
+            "thongtincoban_nhanxetchungcuaquandocpx": " POSTMAN PUT",
+            "thongtincoban_nhanxetcuabangiamdoc": " POSTMAN PUT",
+            "thongtinca_tongso_methep": 200,
+            "thongtinca_tongso_phoithep": 200,
+            "lotron_trongluong_ganglong_dauca": 200.0,
+            "lotron_trongluong_ganglong_cuoica": 200.0,
+            "nguyenlieu_thutu_me_ngay": 200,
+            "nguyenlieu_thutu_me_nam": 200,
+            "nguyenlieu_thutu_me_thexay": 200,
+            "nguyenlieu_thongsosx_nhietdo_binhquan_c": 200.0,
+            "nguyenlieu_tongtrongluong_tan": 200.0,
+            "nguyenlieu_trongluong_sau_truxi_tan": 200.0,
+            "nguyenlieu_trongluong_gangton_lotron_tan": 200.0,
+            "nguyenlieu_kimloai_ganglong_kg": 200.0,
+            "nguyenlieu_kimloai_thepphe_kg": 200.0,
+            "nguyenlieu_kimloai_gangcuc_kg": 200.0,
+            "nguyenlieu_kimloai_phethu_hoi_kg": 200.0,
+            "nguyenlieu_kimloai_dau_mau_phoi_kg": 200.0,
+            "nguyenlieu_kimloai_megang_kg": 200.0,
+            "nguyenlieu_kimloai_methep_kg": 200.0,
+            "nguyenlieu_trodung_voi_10_50mm_kg": 200.0,
+            "nguyenlieu_trodung_dolomit_10_40mm_kg": 200.0,
+            "nguyenlieu_trodung_nhomcuc_kg": 200.0,
+            "nguyenlieu_trodung_quangsat_kg": 200.0,
+            "nguyenlieu_trodung_huynhthach_caf2_kg": 200.0,
+            "nguyenlieu_chatkhu_chatkhu_sicaal_kg": 200.0,
+            "nguyenlieu_chatkhu_chatkhu_fesi_kg": 200.0,
+            "nguyenlieu_chatkhu_fesi_72pt_kg": 200.0,
+            "nguyenlieu_chatkhu_fesi_45pt_kg": 200.0,
+            "nguyenlieu_chatkhu_simn_kg": 200.0,
+            "nguyenlieu_phugia_chattangcarbon_kg": 200.0,
+            "nguyenlieu_phugia_thancam_3a_kg": 200.0,
+            "sl_meduc_thutu_me_theo_ngay": 200,
+            "sl_meduc_thutu_me_theo_nam": 200,
+            "sl_meduc_thutu_me_theo_ttg": 200,
+            "sl_meduc_so_hieu_thung_thep": 200,
+            "sl_meduc_so_hieu_thung_ttg": 200,
+            "sl_phoi_chieudai_phoi_mm": 200.0,
+            "sl_phoi_tietdien_mm": 200.0,
+            "sl_phoi_khoiluong_phoi_kg": 200.0,
+            "sl_tong_trongluong_thep_kg": 200.0,
+            "sl_trongluong_thep_bi_kg": 200.0,
+            "sl_trongluong_thep_thlong_tan": 200.0,
+            "sl_thoigian_duc_mo_dong_bang": 200.0,
+            "sl_thoigian_duc_thoi_bu_phut": 200.0,
+            "sl_thoigian_duc_thoigian_batdau": null,
+            "sl_thoigian_duc_thoigian_ketthuc": null,
+            "sl_thoigian_duc_tong_thoigian": 200.0,
+            "tieuhao_que_donhiet": 200.0,
+            "tieuhao_que_laymau": 200.0,
+            "tieuhao_bi_chanxi": 200.0,
+            "tieuhao_nangluong_chi_so_dien_kwh": 200.0,
+            "tieuhao_nangluong_chi_so_nuoc_m3": 200.0,
+            "tieuhao_nangluong_tieuhao_nuoc_m3_t": 200.0,
+            "tieuhao_nangluong_tieuhao_dien_kwh_t": 200.0,
+            "ghichu": " POSTMAN PUT2",
+            "user_id": "NONAME POSTMAN PUT2",
+            "created_at": "2025-11-04T14:39:23.703300Z",
+            "updated_at": "2025-11-08T21:49:43.820422Z"
+        },
+        {
+            "pxlt_tongketca_id": 1,
+            "thongtincoban_ngay": "2000-01-01",
+            "thoigiansanxuat_ca": 2,
+            "thongtincoban_thoigiansanxuat_gio": 200.0,
+            "thongtincoban_thoigiansanxuat_sonhanvien": 200,
+            "thongtincoban_truongca": "NONAME",
+            "thongtincoban_nhanxetchungcuaquandocpx": " POSTMAN POST2",
+            "thongtincoban_nhanxetcuabangiamdoc": " POSTMAN POST2",
+            "thongtinca_tongso_methep": 200,
+            "thongtinca_tongso_phoithep": 200,
+            "lotron_trongluong_ganglong_dauca": 200.0,
+            "lotron_trongluong_ganglong_cuoica": 200.0,
+            "nguyenlieu_thutu_me_ngay": 200,
+            "nguyenlieu_thutu_me_nam": 200,
+            "nguyenlieu_thutu_me_thexay": 200,
+            "nguyenlieu_thongsosx_nhietdo_binhquan_c": 200.0,
+            "nguyenlieu_tongtrongluong_tan": 200.0,
+            "nguyenlieu_trongluong_sau_truxi_tan": 200.0,
+            "nguyenlieu_trongluong_gangton_lotron_tan": 200.0,
+            "nguyenlieu_kimloai_ganglong_kg": 200.0,
+            "nguyenlieu_kimloai_thepphe_kg": 200.0,
+            "nguyenlieu_kimloai_gangcuc_kg": 200.0,
+            "nguyenlieu_kimloai_phethu_hoi_kg": 200.0,
+            "nguyenlieu_kimloai_dau_mau_phoi_kg": 200.0,
+            "nguyenlieu_kimloai_megang_kg": 200.0,
+            "nguyenlieu_kimloai_methep_kg": 200.0,
+            "nguyenlieu_trodung_voi_10_50mm_kg": 200.0,
+            "nguyenlieu_trodung_dolomit_10_40mm_kg": 200.0,
+            "nguyenlieu_trodung_nhomcuc_kg": 200.0,
+            "nguyenlieu_trodung_quangsat_kg": 200.0,
+            "nguyenlieu_trodung_huynhthach_caf2_kg": 200.0,
+            "nguyenlieu_chatkhu_chatkhu_sicaal_kg": 200.0,
+            "nguyenlieu_chatkhu_chatkhu_fesi_kg": 200.0,
+            "nguyenlieu_chatkhu_fesi_72pt_kg": 200.0,
+            "nguyenlieu_chatkhu_fesi_45pt_kg": 200.0,
+            "nguyenlieu_chatkhu_simn_kg": 200.0,
+            "nguyenlieu_phugia_chattangcarbon_kg": 200.0,
+            "nguyenlieu_phugia_thancam_3a_kg": 200.0,
+            "sl_meduc_thutu_me_theo_ngay": 200,
+            "sl_meduc_thutu_me_theo_nam": 200,
+            "sl_meduc_thutu_me_theo_ttg": 200,
+            "sl_meduc_so_hieu_thung_thep": 200,
+            "sl_meduc_so_hieu_thung_ttg": 200,
+            "sl_phoi_chieudai_phoi_mm": 200.0,
+            "sl_phoi_tietdien_mm": 200.0,
+            "sl_phoi_khoiluong_phoi_kg": 200.0,
+            "sl_tong_trongluong_thep_kg": 200.0,
+            "sl_trongluong_thep_bi_kg": 200.0,
+            "sl_trongluong_thep_thlong_tan": 200.0,
+            "sl_thoigian_duc_mo_dong_bang": 200.0,
+            "sl_thoigian_duc_thoi_bu_phut": 200.0,
+            "sl_thoigian_duc_thoigian_batdau": null,
+            "sl_thoigian_duc_thoigian_ketthuc": null,
+            "sl_thoigian_duc_tong_thoigian": 200.0,
+            "tieuhao_que_donhiet": 200.0,
+            "tieuhao_que_laymau": 200.0,
+            "tieuhao_bi_chanxi": 200.0,
+            "tieuhao_nangluong_chi_so_dien_kwh": 200.0,
+            "tieuhao_nangluong_chi_so_nuoc_m3": 200.0,
+            "tieuhao_nangluong_tieuhao_nuoc_m3_t": 200.0,
+            "tieuhao_nangluong_tieuhao_dien_kwh_t": 200.0,
+            "ghichu": " POSTMAN POST2",
+            "user_id": "NONAME POSTMAN POST2",
+            "created_at": "2025-11-04T14:38:35.781482Z",
+            "updated_at": null
+        }
+    ]
+}

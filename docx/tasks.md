@@ -4,7 +4,7 @@
 
 # Task 2: Basis Statistic layout:
 - I have a statistic page in src/pages/Statistic.tsx.
-- After the user login, it'll have a list of partners being saved in the local storage , which named partners. Create a list of partners based on that list and put it in the header of the Statistic page as a select option dropdown menu. Each items in the drop down will have label as partner name and value as partner name.
-- When user select a partner from the dropdown menu, the page will show the statistic of that partner. The statistic main content will have:
-    - Input fields for start date and end date.
-    - A button to submit the form and show the statistic of that partner. Before the statistic being shown, it'll call the API to get the statistic data.
+- When user login, the API will response as API 1.1 in docx/api.md. The partners then being saved in local storage. Further detail can be seen in src/components/auth/AuthProvider.tsx:47.
+- After the login finished, there'll be a popup to ask user to select a partner to be seen. The selected partner will be saved in local storage (key: selectedPartner, value: partner code). In the main layout, the selected partner will be shown in the navbar, in a select dropdown, which can be used to switch between partners.
+- The partner code will then be used in the API request. Further detail about the API request can be seen in docx/api.md and src/services/apiRoutes.ts (Last 3 routes).
+- After the partner is selected, in the Statistic page, the user can see the summary of the selected partner. The summary will be shown in 3 tables: PXTK, PXLG, PXLT.
