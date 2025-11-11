@@ -40,11 +40,11 @@
     "data": [
         {
             "pxtk_tongketca_id": 8,
-            "thongtincoban_ngay": "2025-09-01",
-            "thongtincoban_truongca": "Hải ca1",
-            "thoigiansanxuat_ca": 1,
-            "thongtincoban_thoigiansanxuat_gio": 7.5,
-            "thongtincoban_thoigiansanxuat_sonhanvien": 15,
+            * "thongtincoban_ngay": "2025-09-01",
+            * "thongtincoban_truongca": "Hải ca1",
+            * "thoigiansanxuat_ca": 1,
+            * "thongtincoban_thoigiansanxuat_gio": 7.5,
+            * "thongtincoban_thoigiansanxuat_sonhanvien": 15,
             "thongtincoban_nhanxetchungcuaquandocpx": "API-DEV",
             "thongtincoban_nhanxetcuabangiamdoc": null,
             "sanluongca_qtksanxuatlythuyet": null,

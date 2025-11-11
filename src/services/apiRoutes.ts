@@ -7,4 +7,5 @@ export const apiRoutes = {
     SUMMARY_PXTK: (partner: string, start: string, end: string) => `${API_BASE_URL}/bs-steel/${partner}/pxtk/tongketca?start=${start}&end=${end}`,
     SUMMARY_PXLG: (partner: string, start: string, end: string) => `${API_BASE_URL}/bs-steel/${partner}/pxlg/tongketca?start=${start}&end=${end}`,
     SUMMARY_PXLT: (partner: string, start: string, end: string) => `${API_BASE_URL}/bs-steel/${partner}/pxlt/tongketca?start=${start}&end=${end}`,
+    
 }
