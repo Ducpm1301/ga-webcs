@@ -22,21 +22,10 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-base-100">
-      <div className="navbar bg-primary text-primary-content">
-        <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">Dashboard</a>
-        </div>
-        <div className="flex-none">
-          <button className="btn btn-ghost" onClick={handleLogout}>Logout</button>
-        </div>
-      </div>
-
       <div className="container mx-auto p-4">
         <div className="card bg-base-200 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title text-2xl mb-4">Welcome to your Dashboard!</h2>
-            <p>You have successfully logged in to the application.</p>
-            <p className="mt-4">This is a sample dashboard page that demonstrates successful authentication.</p>
+            <h2 className="card-title text-2xl mb-4">Welcome to WebCS!</h2>
           </div>
         </div>
       </div>

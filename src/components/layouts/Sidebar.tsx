@@ -1,41 +1,35 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { House, SquareActivity } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
 
-  const menuItems = [
-    { name: 'Dashboard', path: '/dashboard', icon: '📊' },
-    { name: 'Theo dõi vận hành', path: '/statistic', icon: '⚙️' },
+  const items = [
+    { name: 'Homepage', path: '/dashboard', tip: 'Homepage', icon: (
+      <House />
+    ) },
+    { name: 'Theo dõi vận hành', path: '/statistic', tip: 'Theo dõi vận hành', icon: (
+      <SquareActivity />
+    ) },
   ];
 
   return (
-    <ul className="menu">
-        {/* Logo Section */}
-        <li className="p-4 border-b border-gray-700">
-            <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">GA</span>
-            </div>
-            <span className="font-semibold text-lg">GA System</span>
-            </div>
+    <ul className="menu w-full grow">
+      {items.map((item) => (
+        <li key={item.path}>
+          <Link
+            to={item.path}
+            className={
+              `is-drawer-close:tooltip is-drawer-close:tooltip-right ${location.pathname === item.path ? 'active' : ''}`
+            }
+            data-tip={item.tip}
+          >
+            {item.icon}
+            <span className="is-drawer-close:hidden">{item.name}</span>
+          </Link>
         </li>
-        {/* Navigation Menu */}
-        {menuItems.map((item) => (
-            <li key={item.path}>
-                <Link
-                to={item.path}
-                className={`flex items-center space-x-3 p-3 rounded-lg transition-colors duration-200 ${
-                    location.pathname === item.path
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                }`}
-                >
-                <span className="text-xl">{item.icon}</span>
-                <span className="font-medium">{item.name}</span>
-                </Link>
-            </li>
-        ))}
+      ))}
     </ul>
   );
 };
