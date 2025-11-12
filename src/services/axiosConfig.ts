@@ -11,6 +11,19 @@ axiosInstance.interceptors.request.use(
   (config) => {
     // Add API key header to all requests
     config.headers['apikey'] = API_KEY;
+
+    // Add token header to all non-auth endpoints
+    const url = config.url || '';
+    const isAuthEndpoint = [
+      '/bs-auth-authentication/user/_login',
+      '/register',
+      '/forgot-password',
+    ].some((p) => url.includes(p));
+
+    const authToken = localStorage.getItem('auth_token');
+    if (!isAuthEndpoint && authToken) {
+      config.headers['token'] = authToken;
+    }
     return config;
   },
   (error) => {

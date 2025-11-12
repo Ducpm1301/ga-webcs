@@ -41,32 +41,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onForgotPassword, onRe
           "device": DEVICE
         }
 
-        // const response = await axiosInstance.post(apiRoutes.AUTH_LOGIN, request_params);
-        // console.log(response)
-        login({
-          email: values.email,
-          id: 1,
-          access_token: '11111',
-          partners: [
-            {
-              code: 'gtcb'
-            },
-            {
-              code: 'gtdm'
-            }
-          ]
-        })
-        onSuccess();
-        // if (response.data) {
-        //   if (response.data.code === "OK") {
-        //     login(response.data);
-        //     onSuccess();
-        //   } else {
-        //     setError('Tên tài khoản hoặc mật khẩu không chính xác. Vui lòng thử lại');
-        //   }
-        // } else {
-        //   setError('Đăng nhập không thành công. Vui lòng thử lại.');
-        // }
+        const response = await axiosInstance.post(apiRoutes.AUTH_LOGIN, request_params);
+        console.log(response)
+        if (response.data) {
+          if (response.data.code === "OK") {
+            login(response.data);
+            onSuccess();
+          } else {
+            setError('Tên tài khoản hoặc mật khẩu không chính xác. Vui lòng thử lại');
+          }
+        } else {
+          setError('Đăng nhập không thành công. Vui lòng thử lại.');
+        }
 
       } catch (err: any) {
         setError(err.response?.data?.message || 'Đã xảy ra lỗi. Vui lòng thử lại sau.');

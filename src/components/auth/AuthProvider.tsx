@@ -1,14 +1,12 @@
 import React, { createContext, useState, useEffect, useContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-interface Partner {
-    code: string;
-}
+import axiosInstance from '../../services/axiosConfig';
+import { apiRoutes } from '../../services/apiRoutes';
 
 export interface User {
     id: number | string;
     email: string;
-    partners: Partner[];
+    partners: InputPartner[];
     access_token: string;
     // Add other relevant fields if needed
 }
@@ -19,6 +17,15 @@ interface AuthContextType {
     user: User | null; // User object or null if not logged in
     login: (userData: User) => void; // Login now accepts user data and token
     logout: () => void;
+}
+
+interface InputPartner {
+    code: string;
+}
+
+interface Partner {
+    name: string;
+    id: string;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -43,18 +50,43 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // State for user information, initialized to null
     const [user, setUser] = useState<User | null>(null);
 
-    // Login function updated to accept user data and token
-    const login = useCallback((userData: User) => {
+    const getPartnerInfo = useCallback(async (partner: string) => {
+        const response = await axiosInstance.get(apiRoutes.GET_PARTNER_INFO(partner));
+        console.log({ partner: response.data.data[0] });
+        return {
+            name: response.data.data[0].name,
+            id: response.data.data[0].id,
+        };
+    }, []);
+
+    const login = useCallback(async (userData: User) => { // <-- 1. Make the callback async
         // Store token and potentially some user info in localStorage
-        localStorage.setItem('auth_token', userData.access_token);
-        localStorage.setItem('partners', JSON.stringify(userData.partners));
+        localStorage.setItem('auth_token', 'Token ' + userData.access_token);
 
         // Update React state
         setIsAuthenticated(true);
         setUser(userData);
         console.log("AuthProvider: User logged in and state updated.", userData);
 
-    }, []); // Removed navigate from dependencies, login action itself doesn't navigate
+        // 2. Use .map to create an array of promises
+        const partnerInfoPromises = userData.partners.map(async (partner) => {
+            let partnerInfo = await getPartnerInfo(partner.code);
+            console.log({ partnerInfo: partnerInfo });
+            // 3. Return the desired object from the map
+            return {
+                name: partnerInfo.name,
+                id: partnerInfo.id,
+            };
+        });
+
+        // 4. Wait for ALL promises to resolve
+        const partnerInfos: Partner[] = await Promise.all(partnerInfoPromises);
+
+        // 5. This code now runs ONLY after all API calls are complete
+        console.log({ final: partnerInfos });
+        localStorage.setItem('partners', JSON.stringify(partnerInfos));
+
+    }, [getPartnerInfo]); // <-- 6. Add getPartnerInfo to the dependency array
 
     // Logout function updated to clear user state
     const logout = useCallback(() => {
@@ -76,14 +108,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     useEffect(() => {
         const handleStorageChange = (event: StorageEvent) => {
             if (event.key === 'auth_token') {
-                 if (!event.newValue) { // Token was removed (logged out)
+                if (!event.newValue) { // Token was removed (logged out)
                     console.log("AuthProvider: Detected logout from another tab.");
                     setIsAuthenticated(false);
                     setUser(null);
                     navigate('/login', { replace: true }); // Redirect on logout
-                 } else { // Token was added/changed (logged in elsewhere?)
+                } else { // Token was added/changed (logged in elsewhere?)
                     // Optionally re-sync state or ignore
-                 }
+                }
             }
         };
         window.addEventListener('storage', handleStorageChange);

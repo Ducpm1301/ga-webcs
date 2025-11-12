@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useAuth } from '../auth/AuthProvider';
 
 const Navbar: React.FC = () => {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const { user, logout } = useAuth();
 
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -23,10 +25,32 @@ const Navbar: React.FC = () => {
                         <span className="badge badge-xs badge-primary indicator-item"></span>
                     </div>
                 </button>
-                <div className="avatar">
-                    <div className="w-12 rounded-full">
-                        <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                <div className="dropdown dropdown-end">
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        className="avatar"
+                        onClick={() => setIsProfileOpen((prev) => !prev)}
+                    >
+                        <div className="w-12 rounded-full">
+                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                        </div>
                     </div>
+                    {isProfileOpen && (
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-56">
+                            <li className="menu-title">
+                                <span>User</span>
+                            </li>
+                            <li>
+                                <div className="flex flex-col px-2 py-1">
+                                    <span className="text-sm">{user?.email ?? 'Unknown user'}</span>
+                                </div>
+                            </li>
+                            <li>
+                                <button className="btn btn-ghost" onClick={logout}>Logout</button>
+                            </li>
+                        </ul>
+                    )}
                 </div>
             </div>
         </div>
