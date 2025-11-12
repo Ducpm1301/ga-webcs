@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useAuth } from '../auth/AuthProvider';
+import PartnerSelect from '../partners/PartnerSelect';
 
 const Navbar: React.FC = () => {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
-    const { user, logout } = useAuth();
+    const { user, logout, partnersReady, loadingPartners } = useAuth();
 
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -14,6 +15,14 @@ const Navbar: React.FC = () => {
                 <a className="btn btn-ghost text-xl">WebCS</a>
             </div>
             <div className="navbar-center">
+                {/* Partner selector moved from StatisticPage */}
+                {partnersReady ? (
+                    <PartnerSelect className="select select-bordered w-64" />
+                ) : (
+                    <span className="text-sm opacity-70">
+                        {loadingPartners ? 'Đang tải đối tác…' : ''}
+                    </span>
+                )}
             </div>
             <div className="navbar-end gap-2">
                 <button className="btn btn-ghost! btn-circle">

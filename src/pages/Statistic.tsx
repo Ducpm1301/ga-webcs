@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axiosInstance from '@/services/axiosConfig';
-import { apiRoutes } from '@/services/apiRoutes';
+import axiosInstance from '../services/axiosConfig';
+import { apiRoutes } from '../services/apiRoutes';
 
 type PartnerInfo = { id: string; name: string };
 
@@ -69,6 +69,18 @@ const StatisticPage: React.FC = () => {
     }
   }, []);
 
+  // Listen to global partner changes triggered from Navbar PartnerSelect
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ partner: string }>).detail;
+      if (detail?.partner) {
+        setSelectedPartner(detail.partner);
+      }
+    };
+    window.addEventListener('partner_change', handler as EventListener);
+    return () => window.removeEventListener('partner_change', handler as EventListener);
+  }, []);
+
   const fetchData = async () => {
     if (!selectedPartner) return;
     setLoading(true);
@@ -96,11 +108,7 @@ const StatisticPage: React.FC = () => {
 
   const selectedPartnerName = partners.find((p) => p.id === selectedPartner)?.name ?? selectedPartner;
 
-  const handlePartnerChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelectedPartner(value);
-    localStorage.setItem('selected_partner', value);
-  };
+  // Partner selection is handled globally in Navbar.
 
   return (
     <div className="container mx-auto px-4">
@@ -108,16 +116,7 @@ const StatisticPage: React.FC = () => {
         <h1 className="text-3xl font-bold text-center text-[#21e40fef]">Thống kê</h1>
       </div>
 
-      <div className="mb-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="form-control">
-          <label className="label"><span className="label-text">Đối tác</span></label>
-          <select className="select select-bordered" value={selectedPartner} onChange={handlePartnerChange}>
-            {partners.length === 0 && <option value="">Không có đối tác</option>}
-            {partners.map((p) => (
-              <option key={p.id} value={p.id}>{p.name}</option>
-            ))}
-          </select>
-        </div>
+      <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="form-control">
           <label className="label"><span className="label-text">Từ ngày</span></label>
           <input type="date" className="input input-bordered" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
@@ -136,7 +135,7 @@ const StatisticPage: React.FC = () => {
           {/* PXTK */}
           <div className="card bg-base-200 shadow">
             <div className="card-body">
-              <h2 className="card-title">PXTK — {selectedPartnerName}</h2>
+              <h2 className="card-title">PXTK</h2>
               {pxtk.length === 0 ? (
                 <div>Không có dữ liệu</div>
               ) : (
@@ -169,7 +168,7 @@ const StatisticPage: React.FC = () => {
           {/* PXLG */}
           <div className="card bg-base-200 shadow">
             <div className="card-body">
-              <h2 className="card-title">PXLG — {selectedPartnerName}</h2>
+              <h2 className="card-title">PXLG</h2>
               {pxlg.length === 0 ? (
                 <div>Không có dữ liệu</div>
               ) : (
@@ -197,10 +196,10 @@ const StatisticPage: React.FC = () => {
             </div>
           </div>
 
-          {/* PXLT */}
+          {/* PXLT
           <div className="card bg-base-200 shadow">
             <div className="card-body">
-              <h2 className="card-title">PXLT — {selectedPartnerName}</h2>
+              <h2 className="card-title">PXLT</h2>
               {pxlt.length === 0 ? (
                 <div>Không có dữ liệu</div>
               ) : (
@@ -226,7 +225,7 @@ const StatisticPage: React.FC = () => {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </div>

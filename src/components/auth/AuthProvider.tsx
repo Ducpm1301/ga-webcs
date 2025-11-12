@@ -15,6 +15,8 @@ export interface User {
 interface AuthContextType {
     isAuthenticated: boolean;
     user: User | null; // User object or null if not logged in
+    partnersReady: boolean; // true when partners list has been fetched and stored
+    loadingPartners: boolean; // true while fetching partners during login
     login: (userData: User) => void; // Login now accepts user data and token
     logout: () => void;
 }
@@ -50,6 +52,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // State for user information, initialized to null
     const [user, setUser] = useState<User | null>(null);
 
+    // Track partner list readiness
+    const [partnersReady, setPartnersReady] = useState<boolean>(() => {
+        return !!localStorage.getItem('partners');
+    });
+    const [loadingPartners, setLoadingPartners] = useState<boolean>(false);
+
     const getPartnerInfo = useCallback(async (partner: string) => {
         const response = await axiosInstance.get(apiRoutes.GET_PARTNER_INFO(partner));
         console.log({ partner: response.data.data[0] });
@@ -68,6 +76,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(userData);
         console.log("AuthProvider: User logged in and state updated.", userData);
 
+        setLoadingPartners(true);
         // 2. Use .map to create an array of promises
         const partnerInfoPromises = userData.partners.map(async (partner) => {
             let partnerInfo = await getPartnerInfo(partner.code);
@@ -85,6 +94,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // 5. This code now runs ONLY after all API calls are complete
         console.log({ final: partnerInfos });
         localStorage.setItem('partners', JSON.stringify(partnerInfos));
+        setPartnersReady(true);
+        setLoadingPartners(false);
 
     }, [getPartnerInfo]); // <-- 6. Add getPartnerInfo to the dependency array
 
@@ -97,6 +108,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Clear React state
         setIsAuthenticated(false);
         setUser(null);
+        setPartnersReady(false);
+        setLoadingPartners(false);
         console.log("AuthProvider: User logged out, state cleared.");
 
         // Navigate to sign-in page after clearing state
@@ -128,6 +141,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const value: AuthContextType = {
         isAuthenticated,
         user, // Provide user object
+        partnersReady,
+        loadingPartners,
         login,
         logout,
     };

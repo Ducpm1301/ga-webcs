@@ -6,10 +6,7 @@ const Sidebar: React.FC = () => {
 
   const menuItems = [
     { name: 'Dashboard', path: '/dashboard', icon: '📊' },
-    { name: 'Users', path: '/users', icon: '👥' },
-    { name: 'Settings', path: '/settings', icon: '⚙️' },
-    { name: 'Reports', path: '/reports', icon: '📈' },
-    { name: 'Support', path: '/support', icon: '🎧' },
+    { name: 'Theo dõi vận hành', path: '/statistic', icon: '⚙️' },
   ];
 
   return (
