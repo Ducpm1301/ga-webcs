@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <ul className="menu w-full grow">
+    <ul className="menu w-full grow shadow">
       {items.map((item) => (
         <li key={item.path}>
           <Link

@@ -23,10 +23,7 @@ const PartnerGate: React.FC<PartnerGateProps> = ({ children }) => {
   }, [partnersReady]);
 
   const handleConfirm = () => {
-    const sel = localStorage.getItem('selected_partner');
-    if (sel && sel.length > 0) {
       setNeedsSelection(false);
-    }
   };
 
   if (loadingPartners) {
@@ -47,7 +44,7 @@ const PartnerGate: React.FC<PartnerGateProps> = ({ children }) => {
             <div className="py-2">
               <PartnerSelect />
             </div>
-            <div className="modal-action">
+            <div className="modal-action" data-modal-hide="default-modal">
               <button className="btn btn-primary" onClick={handleConfirm}>Xác nhận</button>
             </div>
           </div>

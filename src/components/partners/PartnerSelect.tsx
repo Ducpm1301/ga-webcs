@@ -40,11 +40,24 @@ const PartnerSelect: React.FC<PartnerSelectProps> = ({ value, onChange, classNam
     }
   }, [value, partners]);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      if (typeof value === 'string') return;
+      const detail = (e as CustomEvent<{ partner: string }>).detail;
+      if (detail?.partner) {
+        setSelected(detail.partner);
+      }
+    };
+    window.addEventListener('partner_change', handler as EventListener);
+    return () => window.removeEventListener('partner_change', handler as EventListener);
+  }, [value]);
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     setSelected(val);
     localStorage.setItem('selected_partner', val);
     onChange?.(val);
+    console.log('selected_partner', val);
     // Dispatch a custom event to notify listeners of partner change
     window.dispatchEvent(new CustomEvent('partner_change', { detail: { partner: val } }));
   };

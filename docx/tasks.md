@@ -8,3 +8,12 @@
 - After the login finished, there'll be a popup to ask user to select a partner to be seen. The selected partner will be saved in local storage (Further info in AuthProvider, login function). In the main layout, the selected partner will be shown in the navbar, in a select dropdown, which can be used to switch between partners.
 - The partner code will then be used in the API request. Further detail about the API request can be seen in docx/api.md and src/services/apiRoutes.ts (Last 3 routes).
 - After the partner is selected, in the Statistic page, the user can see the summary of the selected partner. The summary will be shown in 3 tables: PXTK, PXLG, PXLT.
+## Task 2.1: Set default headers for summary table
+- In the summary table, the headers will be shown in the first row. define the default data as shown in docx/img/tongketcapxlt.png:
+- PXTK: docx/img/tongketcapxtk.png
+- PXLG: docx/img/tongketcapxlg.png
+- PXLT: docx/img/tongketcapxlt.png
+If the API return empty data, the table will show "Không có dữ liệu" in the first row. And no other data will be shown.
+## Task 2.2 Set data to summary table of PXTK:
+- When PXTK is chosen, you'll have to call some other APIs, which are:
+

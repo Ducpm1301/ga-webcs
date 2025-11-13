@@ -104,6 +104,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Clear all relevant localStorage items
         localStorage.removeItem('auth_token');
         localStorage.removeItem('partners');
+        localStorage.removeItem('selected_partner');
         console.log('here')
         // Clear React state
         setIsAuthenticated(false);
