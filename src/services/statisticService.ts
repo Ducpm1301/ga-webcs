@@ -4,7 +4,7 @@ export type PXTKLike = {
   thongtincoban_truongca?: string;
   thongtincoban_thoigiansanxuat_gio?: unknown;
   thongtincoban_thoigiansanxuat_sonhanvien?: unknown;
-  sanluongca_thucthu: number | null;
+  sanluongca_qtksanxuatthucte: number | null;
   [key: string]: unknown;
 };
 
@@ -26,6 +26,7 @@ export type PXTKTech = {
   thoigiansanxuat_ca: number;
   apsuatamtong: number | null;
   nhietdodiemhoa: number | null;
+  apsuatamonggioso12: number | null;
   apluckhithan: number | null;
   domocuagio: number | null;
   mocthoidiem?: unknown;
@@ -88,10 +89,12 @@ export const summarizePXTK = (rows: PXTKLike[], techRows: PXTKTech[], analyticsR
       // Kèm theo dữ liệu công nghệ mới nhất cho các ô tóm tắt PXTK
       apsuatamtong: latestTech?.apsuatamtong ?? null,
       nhietdodiemhoa: latestTech?.nhietdodiemhoa ?? null,
+      apsuatamonggioso12: latestTech?.apsuatamonggioso12 ?? null,
       apluckhithan: latestTech?.apluckhithan ?? null,
       domocuagio: latestTech?.domocuagio ?? null,
     };
   });
+  console.log(latestTech)
   return { rows: normalized, totals: { total_gio, total_nv } };
 };
 

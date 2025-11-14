@@ -20,9 +20,10 @@ type PXTKRecord = {
   thongtincoban_truongca?: string;
   thongtincoban_thoigiansanxuat_gio?: number | null;
   thongtincoban_thoigiansanxuat_sonhanvien?: number | null;
-  sanluongca_thucthu: number | null;
+  sanluongca_qtksanxuatthucte: number | null;
   apsuatamtong: number | null;
   nhietdodiemhoa: number | null;
+  apsuatamonggioso12: number | null;
   apluckhithan: number | null;
   domocuagio: number | null;
   danhgia_doamlieuhonhop: number | null;
@@ -267,24 +268,30 @@ const StatisticPage: React.FC = () => {
       {!loading && !error && (
         <div className="grid grid-cols-1 gap-6">
           {selectedSite === 'pxtk' && (
-            <div className="flex flex-col gap-6">
+            <div className="grid grid-cols-12 gap-6">
+              <div className="col-span-3">
+                {Object.keys(groupedPXTK).length !== 0 ? (
+                  <div className="stats shadow">
+                    <div className="stat">
+                      <div className="stat-title text-lg!">Tổng số ca đã nhập</div>
+                      <div className="stat-value text-primary">{totalShiftCount}</div>
+                      <div className="stat-desc text-sm!">Còn thiếu {missingShiftCount}/{expectedShiftCount}</div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="stats shadow">
+                    <div className="stat">
+                      <div className="stat-title text-lg!">Tổng số ca đã nhập</div>
+                      <div className="stat-value text-primary">0</div>
+                      <div className="stat-desc text-sm!">Còn thiếu 0/0</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="col-span-9 flex flex-col gap-6">
               <div className='text-left text-2xl font-bold'>Tổng kết ca PXTK</div>
 
-              {/* Stat component */}
-
-              {Object.keys(groupedPXTK).length !== 0 ? (
-                <div className="stats shadow">
-                  <div className="stat">
-                    <div className="stat-figure text-primary">
-                    </div>
-                    <div className="stat-title text-lg!">Tổng số ca đã nhập</div>
-                    <div className="stat-value text-primary">{totalShiftCount}</div>
-                    <div className="stat-desc text-sm!">Còn thiếu {missingShiftCount}/{expectedShiftCount}</div>
-                  </div>
-                </div>
-              ) : (
-                <div></div>
-              )}
+              
 
 
               {Object.keys(groupedPXTK).length === 0 ? (
@@ -342,11 +349,11 @@ const StatisticPage: React.FC = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-3">
                                   <div className="stat bg-base-100 rounded-xl border border-base-200">
                                     <div className="stat-title text-sm opacity-70">Năng suất/h</div>
-                                    <div className="stat-value text-base font-semibold">{row.thongtincoban_thoigiansanxuat_gio ? (row.sanluongca_thucthu ? row.sanluongca_thucthu / row.thongtincoban_thoigiansanxuat_gio : '...') : '...'}</div>
+                                    <div className="stat-value text-base font-semibold">{row.thongtincoban_thoigiansanxuat_gio ? (row.sanluongca_qtksanxuatthucte ? (row.sanluongca_qtksanxuatthucte / row.thongtincoban_thoigiansanxuat_gio).toFixed(2) : '...') : '...'}</div>
                                   </div>
                                   <div className="stat bg-base-100 rounded-xl border border-base-200">
                                     <div className="stat-title text-sm opacity-70">Tổng sản lượng ca</div>
-                                    <div className="stat-value text-base font-semibold">{row.sanluongca_thucthu ?? '...'} tấn</div>
+                                    <div className="stat-value text-base font-semibold">{row.sanluongca_qtksanxuatthucte ?? '...'} tấn</div>
                                   </div>
                                   <div className="stat bg-base-100 rounded-xl border border-base-200">
                                     <div className="stat-title text-sm opacity-70">Thòi gian chạy máy</div>
@@ -373,6 +380,10 @@ const StatisticPage: React.FC = () => {
                                     <div className="stat-value text-base font-semibold">{row.nhietdodiemhoa ?? '...'} °C</div>
                                   </div>
                                   <div className="stat bg-base-100 rounded-xl border border-base-200">
+                                    <div className="stat-title text-sm opacity-70">Áp lực gió âm</div>
+                                    <div className="stat-value text-base font-semibold">{row.apsuatamonggioso12 ?? '...'} kPa</div>
+                                  </div>
+                                  <div className="stat bg-base-100 rounded-xl border border-base-200">
                                     <div className="stat-title text-sm opacity-70">Áp lực khí than</div>
                                     <div className="stat-value text-base font-semibold">{row.apluckhithan ?? '...'} kPa</div>
                                   </div>
@@ -388,6 +399,7 @@ const StatisticPage: React.FC = () => {
                     </div>
                   ))
               )}
+              </div>
             </div>
           )}
           {selectedSite === 'pxlg' && (
