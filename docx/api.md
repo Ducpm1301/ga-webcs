@@ -436,3 +436,160 @@
         }
     ]
 }
+
+# 1.5 API get tech data from PXTK:
+## Request
+- Header:
+    - Content-Type: application/json
+    - apikey: string
+    - token: auth_token (from localStorage)
+    - Authorization: Bearer {access_token}
+- Request Body:
+    - day: string (format: YYYY-MM-DD)
+## Response
+- Status Code: 200 OK
+- Response Body (Mocking):
+{
+    "status": "selected",
+    "table": "ems_dev.gtcb.pxtk_congnghe",
+    "count": 8,
+    "next": false,
+    "data": [
+        {
+            "pxtk_congnghe_id": 4,
+            "thoigiansanxuat_ca": 1,
+            "mocthoidiem": "2025-09-01T00:00:00Z",
+            "domocuagio": 1.0,
+            "dongquat": 5.0,
+            "apluckhithan": 2.0,
+            "nhietdodiemhoa": 3.0,
+            "apsuatamonggioso12": 6.0,
+            "nhietdohop12": 7.0,
+            "apsuatamtong": 8.0,
+            "chieucaoloplieu": 4.0,
+            "tylephandukien": 9.0,
+            "user_id": "gtcb.dir@gmail.com",
+            "created_at": "2025-11-06T11:22:06.575648Z",
+            "updated_at": null
+        },
+        {
+            "pxtk_congnghe_id": 5,
+            "thoigiansanxuat_ca": 1,
+            "mocthoidiem": "2025-09-01T01:00:00Z",
+            "domocuagio": 2.0,
+            "dongquat": 6.0,
+            "apluckhithan": 3.0,
+            "nhietdodiemhoa": 4.0,
+            "apsuatamonggioso12": 7.0,
+            "nhietdohop12": 8.0,
+            "apsuatamtong": 9.0,
+            "chieucaoloplieu": 5.0,
+            "tylephandukien": 1.0,
+            "user_id": "gtcb.dir@gmail.com",
+            "created_at": "2025-11-06T11:22:28.008705Z",
+            "updated_at": null
+        },
+        {
+            "pxtk_congnghe_id": 6,
+            "thoigiansanxuat_ca": 1,
+            "mocthoidiem": "2025-09-01T02:00:00Z",
+            "domocuagio": 3.0,
+            "dongquat": 7.0,
+            "apluckhithan": 4.0,
+            "nhietdodiemhoa": 5.0,
+            "apsuatamonggioso12": 8.0,
+            "nhietdohop12": 9.0,
+            "apsuatamtong": 1.0,
+            "chieucaoloplieu": 6.0,
+            "tylephandukien": 2.0,
+            "user_id": "gtcb.dir@gmail.com",
+            "created_at": "2025-11-06T11:22:45.196935Z",
+            "updated_at": null
+        },
+        {
+            "pxtk_congnghe_id": 7,
+            "thoigiansanxuat_ca": 1,
+            "mocthoidiem": "2025-09-01T03:00:00Z",
+            "domocuagio": 4.0,
+            "dongquat": 7.0,
+            "apluckhithan": 4.0,
+            "nhietdodiemhoa": 5.0,
+            "apsuatamonggioso12": 8.0,
+            "nhietdohop12": 9.0,
+            "apsuatamtong": 1.0,
+            "chieucaoloplieu": 6.0,
+            "tylephandukien": 2.0,
+            "user_id": "gtcb.dir@gmail.com",
+            "created_at": "2025-11-06T11:22:56.959955Z",
+            "updated_at": null
+        },
+        {
+            "pxtk_congnghe_id": 8,
+            "thoigiansanxuat_ca": 1,
+            "mocthoidiem": "2025-09-01T04:00:00Z",
+            "domocuagio": 5.0,
+            "dongquat": 9.0,
+            "apluckhithan": 6.0,
+            "nhietdodiemhoa": 7.0,
+            "apsuatamonggioso12": 10.0,
+            "nhietdohop12": 11.0,
+            "apsuatamtong": 12.0,
+            "chieucaoloplieu": 8.0,
+            "tylephandukien": 13.0,
+            "user_id": "gtcb.dir@gmail.com",
+            "created_at": "2025-11-06T11:23:17.345782Z",
+            "updated_at": null
+        },
+        {
+            "pxtk_congnghe_id": 9,
+            "thoigiansanxuat_ca": 1,
+            "mocthoidiem": "2025-09-01T05:00:00Z",
+            "domocuagio": 6.0,
+            "dongquat": 9.0,
+            "apluckhithan": 6.0,
+            "nhietdodiemhoa": 7.0,
+            "apsuatamonggioso12": 10.0,
+            "nhietdohop12": 11.0,
+            "apsuatamtong": 12.0,
+            "chieucaoloplieu": 8.0,
+            "tylephandukien": 13.0,
+            "user_id": "gtcb.dir@gmail.com",
+            "created_at": "2025-11-06T11:23:33.431180Z",
+            "updated_at": null
+        },
+        {
+            "pxtk_congnghe_id": 10,
+            "thoigiansanxuat_ca": 1,
+            "mocthoidiem": "2025-09-01T06:00:00Z",
+            "domocuagio": 7.0,
+            "dongquat": 2.0,
+            "apluckhithan": 8.0,
+            "nhietdodiemhoa": 9.0,
+            "apsuatamonggioso12": 3.0,
+            "nhietdohop12": 4.0,
+            "apsuatamtong": 5.0,
+            "chieucaoloplieu": 1.0,
+            "tylephandukien": 6.0,
+            "user_id": "gtcb.dir@gmail.com",
+            "created_at": "2025-11-06T11:23:53.162429Z",
+            "updated_at": null
+        },
+        {
+            "pxtk_congnghe_id": 11,
+            "thoigiansanxuat_ca": 1,
+            "mocthoidiem": "2025-09-01T07:00:00Z",
+            "domocuagio": 8.0,
+            "dongquat": 2.0,
+            "apluckhithan": 9.0,
+            "nhietdodiemhoa": 9.0,
+            "apsuatamonggioso12": 3.0,
+            "nhietdohop12": 4.0,
+            "apsuatamtong": 5.0,
+            "chieucaoloplieu": 1.0,
+            "tylephandukien": 6.0,
+            "user_id": "gtcb.dir@gmail.com",
+            "created_at": "2025-11-06T11:24:07.844334Z",
+            "updated_at": null
+        }
+    ]
+}

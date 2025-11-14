@@ -36,7 +36,13 @@ const PartnerSelect: React.FC<PartnerSelectProps> = ({ value, onChange, classNam
     if (sel) {
       setSelected(sel);
     } else if (partners.length > 0) {
-      setSelected(partners[0].id);
+      const defaultId = partners[0].id;
+      setSelected(defaultId);
+      try {
+        localStorage.setItem('selected_partner', defaultId);
+        // Notify listeners of initial default selection
+        window.dispatchEvent(new CustomEvent('partner_change', { detail: { partner: defaultId } }));
+      } catch {}
     }
   }, [value, partners]);
 

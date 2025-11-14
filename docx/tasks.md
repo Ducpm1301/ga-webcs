@@ -14,6 +14,10 @@
 - PXLG: docx/img/tongketcapxlg.png
 - PXLT: docx/img/tongketcapxlt.png
 If the API return empty data, the table will show "Không có dữ liệu" in the first row. And no other data will be shown.
-## Task 2.2 Set data to summary table of PXTK:
-- When PXTK is chosen, you'll have to call some other APIs, which are:
+## Task 2.2 Set data to summary of PXTK:
+- dữ liệu cho các ô:
+ - Tổng áp suất: API 1.5, lấy giá trị của trường 'apsuatamtong' của bản ghi có 'mocthoidiem' lớn nhất.
+ - Nhiệt độ điểm hoá: API 1.5, lấy giá trị của trường 'nhietdodiemhoa' của bản ghi có 'mocthoidiem' lớn nhất.
+ - Áp lực khí than: API 1.5, lấy giá trị của trường 'apluckhithan' của bản ghi có 'mocthoidiem' lớn nhất.
+ - Độ mở gió: API 1.5, lấy giá trị của trường 'domocuagio' của bản ghi có 'mocthoidiem' lớn nhất.
 
