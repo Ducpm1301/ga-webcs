@@ -21,3 +21,60 @@ If the API return empty data, the table will show "Không có dữ liệu" in th
  - Áp lực khí than: API 1.5, lấy giá trị của trường 'apluckhithan' của bản ghi có 'mocthoidiem' lớn nhất.
  - Độ mở gió: API 1.5, lấy giá trị của trường 'domocuagio' của bản ghi có 'mocthoidiem' lớn nhất.
 
+## Task 2.3 Set data to summary of PXLG:
+- dữ liệu cho các ô:
+ {
+    Ngày làm việc: API 1.3, trường thongtincoban_ngay,
+    Ca: API 1.3, trường thongtincoban_ca,
+    Giờ hoạt động: API 1.3, trường thongtincoban_thoigiansanxuat_gio,
+    Trưởng ca: API 1.3, trường thongtincoban_truongca,
+    Số lượng nhân viên: API 1.3, trường thongtincoban_thoigiansanxuat_sonhanvien,
+	Nguyên liệu: {
+		Lũy kế số mẻ liệu đầu ca: API 1.3, trường tonghop_sx_luy_ke_so_me_lieu_dau_ca
+	},
+	Sản lượng & bán thành phẩm: {
+		Gang Mê (Tấn): API 1.3, trường sl_ban_thanhpham_me_gang_tan
+		Xi Hạt (Tấn): API 1.3, trường sl_ban_thanhpham_xi_hat_tan
+		Xi Khô (Tấn): API 1.3, trường sl_ban_thanhpham_xi_kho_tan
+		Lũy kế số mẻ ra gang đầu ca: API 1.3, trường tonghop_sx_luy_ke_so_me_gang_dau_ca
+	},
+	Tiêu hao: {
+		Chỉ số điện (kWh): API 1.3, trường tieuhaonangluong_dien
+		Chỉ số nước (m3): API 1.3, trường tieuhaonangluong_nuoc
+	}
+}
+Làm cấu trúc khung tương tự như PXTK, kể cả tab stats.
+
+## Task 2.4 Set data to summary of PXLT:
+- dữ liệu cho các ô:
+ {
+    Ngày làm việc: API 1.4, trường thongtincoban_ngay,
+    Ca: API 1.4, trường thongtincoban_ca,
+    Giờ hoạt động: API 1.4, trường thongtincoban_thoigiansanxuat_gio,
+    Trưởng ca: API 1.4, trường thongtincoban_truongca,
+    Số lượng nhân viên: API 1.4, trường thongtincoban_thoigiansanxuat_sonhanvien,
+	Nguyên liệu & hợp kim {
+        Số thứ tự mẻ thép: {
+            Thứ tự mẻ theo ngày: ,
+            Thứ tự mẻ theo năm: ,
+            Thứ tự theo thể xây: ,
+        },
+        Thông số sản xuất {
+            Nhiệt độ bình quân: ,
+        }
+    },
+    Sản lượng {
+        Thông tin mẻ đúc: {
+            Thứ tự mẻ theo ngày: ,
+            Thứ tự mẻ theo năm: ,
+            Thứ tự mẻ theo TTG: ,
+            Số hiệu thùng thép: ,
+            Số hiệu thùng TTG: ,
+        }
+    },
+    Tiêu hao {
+        Chỉ số điện (kWh): API 1.4, trường tieuhaonangluong_dien,
+        Chỉ số nước (m3): API 1.4, trường tieuhaonangluong_nuoc,
+    }
+}
+Làm cấu trúc khung tương tự như PXTK, kể cả tab stats. Với các đầu mục lớn trong PXLT, như Nguyên liệu & hợp kim, Sản lượng, Tiêu hao, hãy lấy ví dụ từ docx/img/tabexample.png.
